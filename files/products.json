@@ -1,0 +1,43 @@
+[
+    {
+        "productID":"",
+        "productName":"iPhone 9",
+        "productCategory":"smartphones",
+        "productDescription":"An apple mobile which is nothing like apple",
+        "price":549,
+        "priceCondition":"Fixed",
+        "productCondition":"New",
+        "adCategory":"sale",
+        "city":"America",
+        "rating": {
+            "oneStar": 1,
+            "twoStars": 2,
+            "threeStars":3,
+            "fourStars":4,
+            "fiveStar":5
+        },
+        "productQty":94,
+        "productImage":"https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+    },
+
+    {
+        "productID":"",
+        "productName":"HP Pavilion 15-DK1056WM",
+        "productCategory":"laptops",
+        "productDescription":"HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+        "price":1099,   
+        "priceCondition":"Yearly",
+        "productCondition":"new",
+        "adCategory":"sale",
+        "city":"America",
+        "rating": {
+            "oneStar": 1,
+            "twoStars": 2,
+            "threeStars":3,
+            "fourStars":4,
+            "fiveStar":5
+        },
+        "productQty":89,
+        "productImage":"https://i.dummyjson.com/data/products/10/thumbnail.jpeg"
+    }
+]
