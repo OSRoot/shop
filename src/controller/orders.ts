@@ -47,7 +47,7 @@ export const getOneOrder = async (
 ) => {
     try {
         const id = req.params.id
-        if (!id || id.length > 24 || id.length < 24) {
+        if (!id || id.length > 24) {
             return res.status(400).json({
                 Error: 'Wrong id , provide the exact id of the order'
             })
@@ -81,6 +81,104 @@ export const getAllOrders = async (
         const orders = await Order.find();
         return res.status(200).json(orders)
 
+    } catch (error) {
+        next(error)
+    }
+}
+
+// ###########################################################################################
+// #############################        Update an order      #################################
+// ###########################################################################################
+
+export const updateOneOrder = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const order = req.body
+
+        // check if there is an ID in the URL and The length is correct
+        if (req.params.id) {
+            const id = req.params.id;
+            if (id.length < 24 || id.length > 24) {
+                return res.json({
+                    Error: 'Invalid ID'
+                })
+            }
+        }
+        if (!req.body) {
+            return res.status(400).json({
+                message: 'Data to update can not be empty'
+            })
+        }
+        else {
+            const id = req.params.id
+            const exists = await Order.findById(id);
+            if (!exists) {
+                return res.status(400).json({
+                    Error: 'No such ID'
+                })
+            }
+        }
+
+
+    } catch (error) {
+        next(error)
+    }
+}
+// ###########################################################################################
+// #############################        Delete an order      #################################
+// ###########################################################################################
+
+
+export const DeleteOneOrder = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        // check if there is an ID in the URL and The length is correct
+        if (req.params.id) {
+            const id = req.params.id;
+            if (id.length < 24 || id.length > 24) {
+                return res.json({
+                    Error: 'Invalid ID'
+                })
+            }
+        }
+        // if no Id is provided 
+        if (!req.params.id) {
+            return res.json({
+                Message: "ID is required"
+            });
+        }
+        if (req.body) {
+            const order = req.body
+            if (!order.userID) {
+                return res.status(400).json({
+                    Error: 'No user id found'
+                })
+            }
+        }
+
+
+        else {
+            const id = req.params.id;
+            const order_exists = await Order.findById(id);
+            if (!order_exists?.id) {
+                return res.status(400).json({
+                    Error: 'Order not found or Wrong order id'
+                })
+            }
+            else {
+
+                const order = await Order.findByIdAndDelete(order_exists.id);
+                res.json(order)
+
+            }
+
+        }
     } catch (error) {
         next(error)
     }
